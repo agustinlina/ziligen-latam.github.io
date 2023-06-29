@@ -1,179 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/desktop-style.css">
-    <link rel="stylesheet" href="./css/phone-style.css">
-    <link rel="stylesheet" href="./css/tablet-style.css">
-    <link href="css\font-awesome.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="./img/fav-icon.png" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
-    <script src="https://kit.fontawesome.com/8455a1ba13.js" crossorigin="anonymous"></script>
-    <title>Inicio - Ziligen</title>
+  <title>Newsletter Subscription</title>
+  <style>
+    /* Basic CSS styling for the form */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  </style>
+  <?php
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $email = $_POST['email'];
+  
+      // Save the email to a text file
+      $file = 'subscribed_emails.txt';
+      $current = file_get_contents($file);
+      $current .= $email . "\n";
+      file_put_contents($file, $current);
+  
+      // Send the email
+      $to = 'your-webmail@example.com';
+      $subject = 'New Newsletter Subscription';
+      $message = "A new user subscribed to the newsletter:\n\nEmail: $email";
+      $headers = "From: newsletter@example.com\r\n";
+  
+      mail($to, $subject, $message, $headers);
+  
+      // Redirect back to the form page
+      header('Location: index.html');
+      exit;
+  }
+  ?>
+  
 </head>
-
 <body>
-    <div class="desktop" id="desktop">
-        <div class="background-image">
-            <img src="./img/bg-z.png" alt="">
-        </div>
-        <div class="box">
-                <div class="header">
-                    <div class="header-logo">
-                        <a href="./index.html"><img src="./img/Logo.png" alt=""></a>
-                    </div>
-                    <div class="header-logo-cert">
-                        <img src="./img/logo-footer.png" alt="">
-                    </div>
-                </div>
-                <div class="containerprincipal">
-                    <div class="textoprincipal">
-                        <p>
-                            Ziligen, es el fabricante líder de bandas transportadoras de PVC- PU y correas planas de
-                            transmisión, con más de 50 años de experiencia.
-                        </p>
-                        <br>
-                        <p>Actualmente es una de las empresas con mayor crecimiento a nivel global exportando a más de
-                            50 países en todos los continentes.</p>
-                    </div>
-                    <div class="datos-contacto">
-                        <div class="mail">
-                            <p>
-                                ventas@ziligenlatam.com
-                            </p>
-                            <div class="mail-logo">
-                                <img src="./img/email-logo.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="telefono">
-                            <p>
-                                +54 9 3875 43-2877
-                            </p>
-                            <div class="telefono-logo">
-                                <img src="./img/telefono-logo.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="locacion">
-                            <p>
-                                Camino Chacra de la Merced Km. 4,5, Córdoba, Argentina
-                            </p>
-                            <div class="locacion-logo">
-                                <img src="./img/locacion-logo.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="whatsapp">
-                            <a class="boton-wpp" aria-label="" href="https://wa.me/5493875432877" target="_blank">
-                            </a>
-                            <div class="whatsapp-logo">
-                                <img src="./img/whatsapp-logo.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <footer>
-                    <div class="descarga">
-                        <a href="./brochure/folleto-ziligen.pdf" download>
-                        </a>
-                        <div class="descarga-logo">
-                            <img src="./img/descarga-logo.svg" alt="">
-                        </div>
-                    </div>
-                    <div class="descarga-text">
-                        <p>¡Descarga nuestro brochure!</p>
-                    </div>
-    
-                    <div class="en-desarrollo">
-                        <p>
-                            <i class="fa-solid fa-gears" style="color: #ffffff;font-size: 20px;"></i> WEB EN DESARROLLO
-                        </p>
-                    </div>
-                </footer>
-        </div>
-    </div>
-<div class="phone" id="phone">
-        <div class="background-image" style="background-image: url(./img/bg-z.png);">
-        </div>
-        <div class="main-container">
-            <div class="main-header">
-                <img src="./img/Logo.png" alt="">
-            </div>
-            <div class="main-text">
-                <p style="padding-top
-                :40px">
-                    Ziligen, es el fabricante líder de bandas transportadoras de PVC- PU y correas planas de
-                    transmisión, con más de 50 años de experiencia.
-                </p>
-                <br>
-                <p>Actualmente es una de las empresas con mayor crecimiento a nivel global exportando a más de
-                    50 países en todos los continentes.
-                </p>
-            </div>
-            <div class="main-contact">
-                <div class="divisor"></div>
-                <div class="divisor"></div>
-                <div class="divisor"></div>
-                <div class="mail">
-                    <p>
-                        ventas@ziligenlatam.com
-                    </p>
-                    <div class="divisor"></div>
-                    <div class="mail-logo">
-                        <img src="./img/email-logo.svg" alt="">
-                    </div>
-                </div>
-                <div class="telefono">
-                    <p>
-                        +54 9 3875 43-2877
-                    </p>
-                    <div class="telefono-logo">
-                        <img src="./img/telefono-logo.svg" alt="">
-                    </div>
-                </div>
-                <div class="divisor"></div>
-                <div class="locacion">
-                    <p>
-                        Camino Chacra de la Merced Km. 4,5, Córdoba, Argentina
-                    </p>
-                    <div class="locacion-logo">
-                        <img src="./img/locacion-logo.svg" alt="">
-                    </div>
-                </div>
-                <div class="whatsapp">
-                    <a class="boton-wpp" aria-label="" href="https://wa.me/5493875432877" target="_blank">
-                        <div class="whatsapp-logo">
-                            <img src="./img/whatsapp-logo.svg" alt="">
-                        </div>
-                    </a>
-                </div>
-                <br><br><br><br><br><br>
-                <br>
-                <div class="en-desarrollo">
-                    <p>
-                        <i class="fa-solid fa-gears" style="color: #ffffff;font-size: 20px;"></i> WEB EN DESARROLLO
-                    </p>
-                </div>
-                <div class="descarga">
-                    <a href="./brochure/folleto-ziligen.pdf" download>
-                        <div class="descarga-logo">
-                            <img src="./img/descarga-logo.svg" alt="">
-                        </div>
-                        <div class="descarga-text">
-                            <p>¡Descarga nuestro brochure!</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="footer">
-                    <img src="./img/logo-footer.png" alt="">
-                </div>
-            </div>
-    </div>
+  <div class="container">
+    <h2>Newsletter Subscription</h2>
+    <form action="newsletter.php" method="post" enctype="text/plain">
+      <input type="email" name="email" placeholder="Your email address" required>
+      <input type="submit" value="Subscribe">
+    </form>
+  </div>
 </body>
-
 </html>
+
